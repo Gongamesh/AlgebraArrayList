@@ -8,6 +8,23 @@ public class EvidencijaPolaznika {
         }
     }
 
+    public static void searchPolaznikByEmail(ArrayList<Polaznik> evidencija, String email) {
+        boolean flag = false;
+
+        for (Polaznik polaznik : evidencija) {
+            if(polaznik.getEmail().equals(email)) {
+                System.out.println("\nPronadjeni polaznik je: ");
+                System.out.println(polaznik);
+                flag = true;
+                break;
+            }
+        }
+
+        if(!flag) {
+            System.out.println("Polaznik nepostoji!");
+        }
+    }
+
     public static void main(String[] args) {
         ArrayList<Polaznik> evidencija = new ArrayList<>();
 
@@ -17,5 +34,6 @@ public class EvidencijaPolaznika {
         evidencija.add(new Polaznik("Alex", "Lav", "lav@admin.com"));
 
         ispisPolaznika(evidencija);
+        searchPolaznikByEmail(evidencija, "jankicc@admin.com");
     }
 }
