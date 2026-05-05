@@ -27,6 +27,20 @@ public class EvidencijaPolaznika {
         }
     }
 
+    public static void nasumicniIspis(Map<String, Polaznik> evidencija) {
+        List<Polaznik> tempEvidencija = new ArrayList<>();
+
+        for (Polaznik polaznik : evidencija.values()) {
+            tempEvidencija.add(polaznik);
+        }
+
+        Collections.shuffle(tempEvidencija);
+
+        for (Polaznik polaznik : tempEvidencija) {
+            System.out.println(polaznik);
+        }
+    }
+
     public static void main(String[] args) {
         Map<String, Polaznik> evidencija = new HashMap<>();
 
@@ -37,10 +51,7 @@ public class EvidencijaPolaznika {
         addPolaznik(evidencija, "lav@admin.com", "Alex", "Lav");
 
         ispisPolaznika(evidencija);
-
-        Map<String, Polaznik> sortiranaEvidencija = new TreeMap<>(evidencija);
-
         System.out.println("");
-        ispisPolaznika(sortiranaEvidencija);
+        nasumicniIspis(evidencija);
     }
 }
