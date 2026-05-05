@@ -28,11 +28,7 @@ public class EvidencijaPolaznika {
     }
 
     public static void nasumicniIspis(Map<String, Polaznik> evidencija) {
-        List<Polaznik> tempEvidencija = new ArrayList<>();
-
-        for (Polaznik polaznik : evidencija.values()) {
-            tempEvidencija.add(polaznik);
-        }
+        List<Polaznik> tempEvidencija = new ArrayList<>(evidencija.values());
 
         Collections.shuffle(tempEvidencija);
 
