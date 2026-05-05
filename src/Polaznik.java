@@ -37,7 +37,7 @@ public class Polaznik implements Comparable<Polaznik> {
 
     @Override
     public int compareTo(Polaznik o) {
-        return this.prezime.compareTo(o.getPrezime());
+        return this.email.compareTo(o.getEmail());
     }
 
 }

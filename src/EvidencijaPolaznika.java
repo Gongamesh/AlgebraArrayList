@@ -1,20 +1,17 @@
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class EvidencijaPolaznika {
 
-    public static void ispisPolaznika(Set<Polaznik> evidencija) {
-        for(Polaznik polaznik : evidencija) {
+    public static void ispisPolaznika(Map<String, Polaznik> evidencija) {
+        for(Polaznik polaznik : evidencija.values()) {
             System.out.println(polaznik);
         }
     }
 
-    public static boolean searchPolaznikByEmail(Set<Polaznik> evidencija, String email) {
+    public static boolean searchPolaznikByEmail(Map<String, Polaznik> evidencija, String email) {
 
-        for (Polaznik polaznik : evidencija) {
-            if(polaznik.getEmail().equals(email)) {
+        for (String key : evidencija.keySet()) {
+            if(key.equals(email)) {
                 return true;
             }
         }
@@ -22,18 +19,16 @@ public class EvidencijaPolaznika {
         return false;
     }
 
-    public static void addPolaznik(Set<Polaznik> evidencija, String email ,String ime, String prezime) {
-        if(searchPolaznikByEmail(evidencija, email)) {
-            System.out.println("Polaznik vec postoji.");
-        } else if (!evidencija.add(new Polaznik(ime, prezime, email))) {
-            System.out.println("Polaznik postoji.");
+    public static void addPolaznik(Map<String, Polaznik> evidencija, String email ,String ime, String prezime) {
+        if(evidencija.containsKey(email)) {
+            System.out.println("Polaznik s ovim emailom vec postoji.");
         } else {
-            System.out.println("Polaznik je uspjesno dodan.");
+            evidencija.put(email, new Polaznik(ime, prezime, email));
         }
     }
 
     public static void main(String[] args) {
-        Set<Polaznik> evidencija = new HashSet<>();
+        Map<String, Polaznik> evidencija = new HashMap<>();
 
         addPolaznik(evidencija, "jankic@admin.com", "Janko", "Jankovic");
         addPolaznik(evidencija, "markic@admin.com", "Marko", "Markovic");
@@ -43,7 +38,8 @@ public class EvidencijaPolaznika {
 
         ispisPolaznika(evidencija);
 
-        Set<Polaznik> sortiranaEvidencija = new TreeSet<>(evidencija);
+        Map<String, Polaznik> sortiranaEvidencija = new TreeMap<>(evidencija);
+
         System.out.println("");
         ispisPolaznika(sortiranaEvidencija);
     }
